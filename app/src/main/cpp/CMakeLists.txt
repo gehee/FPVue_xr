@@ -36,6 +36,22 @@ add_subdirectory(wfbngrtl8812)
 ## mavlink
 add_library(mavlink STATIC ${CMAKE_SOURCE_DIR}/mavlink/mavlink.cpp)
 
+# OpenCV
+include(FetchContent)
+FetchContent_Declare(
+        opencv
+        URL     https://github.com/opencv/opencv/releases/download/4.9.0/opencv-4.9.0-android-sdk.zip
+)
+FetchContent_GetProperties(opencv)
+if(NOT opencv_POPULATED)
+    message(STATUS "Fetching OpenCV SDK for Android")
+    FetchContent_Populate(opencv)
+    message(STATUS "Fetching OpenCV SDK for Android - done")
+endif()
+find_package(OpenCV REQUIRED PATHS ${opencv_SOURCE_DIR}/sdk/native/jni NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
+add_library(opencv INTERFACE IMPORTED GLOBAL)
+
+
 add_library(native_app_glue STATIC ${ANDROID_NDK}/sources/android/native_app_glue/android_native_app_glue.c)
 set_target_properties(native_app_glue PROPERTIES INTERFACE_INCLUDE_DIRECTORIES ${ANDROID_NDK}/sources/android/native_app_glue)
 
@@ -43,9 +59,6 @@ set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -u ANativeActivity_o
 add_library(native-activity SHARED main.cpp app.cpp)
 
 target_precompile_headers(native-activity PUBLIC "pch.h")
-
-set(OpenCV_DIR ${CMAKE_SOURCE_DIR}/opencv-4.9.0-android-sdk/sdk/native/jni)
-find_package(OpenCV REQUIRED)
 
 target_link_libraries(native-activity
         android
