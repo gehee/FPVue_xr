@@ -188,8 +188,10 @@ void app_step()
 
         std::string txt = "" + std::to_string(video_width) + "x" + std::to_string(video_height) + "\t" + std::to_string(framerate) + "fps\t" +  std::to_string(screen_refresh_rate) + " Hz";
         text_add_at(txt.c_str(), matrix_trs({-0.1,-0.52,-1.4f}, quat_identity, vec3{-1.0f, 1.0f, 1.0f}), 0, text_align_bottom_left);
-        std::string txt1 = "" + std::to_string(mavlink_data.telemetry_battery/1000.0) + "V";
-        text_add_at(txt1.c_str(), matrix_trs({-0.4,-0.52,-1.4f}, quat_identity, vec3{-1.0f, 1.0f, 1.0f}), 0, text_align_bottom_left);
+        if (mavlink_data.telemetry_battery>0){
+            std::string txt1 = "" + std::to_string(mavlink_data.telemetry_battery/1000.0) + "V";
+            text_add_at(txt1.c_str(), matrix_trs({-0.4,-0.52,-1.4f}, quat_identity, vec3{-1.0f, 1.0f, 1.0f}), 0, text_align_bottom_left);
+        }
     });
 }
 

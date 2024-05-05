@@ -1,0 +1,4 @@
+[submodule "app/src/main/cpp/StereoKit"]
+	path = app/src/main/cpp/StereoKit
+	url = https://github.com/gehee/Stereokit.git
+	branch = fpvue-compat
