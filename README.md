@@ -6,17 +6,19 @@ At this stage, this is only intended for developers.
 ## Compilation
 ```
 git clone https://github.com/gehee/FPVue_xr.git
+cd FPVue_xr
 git submodule init
 git submodule update
 ```
-Create `local.properties` at the root of the project and set your SDK directory:
+
+Open project in android studio and wait for gradle to init the project.
+
+If Android Studio complains about missing `sdk.dir`, create `local.properties` at the root of the project and set your SDK directory:
 
 Example on windows:
 ```
 sdk.dir=C\:\\Users\\...\\AppData\\Local\\Android\\Sdk
 ```
-
-Open project in android studio and wait for gradle to init the project.
 
 ## Run the project
 
