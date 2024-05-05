@@ -2,3 +2,13 @@
 	path = app/src/main/cpp/StereoKit
 	url = https://github.com/gehee/Stereokit.git
 	branch = fpvue-compat
+
+[submodule "app/src/main/cpp/wfbngrtl8812/devourer"]
+	path = app/src/main/cpp/wfbngrtl8812/devourer
+	url = https://github.com/gehee/devourer.git
+	branch = android-compat
+
+[submodule "app/src/main/cpp/wfbngrtl8812/wfb-ng"]
+	path = app/src/main/cpp/wfbngrtl8812/wfb-ng
+	url = https://github.com/svpcom/wfb-ng.git
+	branch = master
